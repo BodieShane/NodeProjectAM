@@ -1,18 +1,18 @@
 /*
- * Node.cpp
+ * NodeController.cpp
  *
  *  Created on: Jan 27, 2016
  *      Author: bsha6756
  */
 
-#include "Node.h"
+#include "NodeController.h"
 
-Node::Node() {
+NodeController::NodeController() {
 	// TODO Auto-generated constructor stub
 
 }
 
-Node::~Node() {
+NodeController::~NodeController() {
 	// TODO Auto-generated destructor stub
 }
 
