@@ -20,6 +20,7 @@ public:
 	Node(Type value);
 	virtual ~Node();
 	Type getValue();
+	void setValue(Type value);
 	Node*getPointers();
 };
 
