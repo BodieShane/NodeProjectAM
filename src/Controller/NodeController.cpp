@@ -11,6 +11,8 @@
 NodeController::NodeController() {
 	intNode.setValue(5);
 	this->stringArrayNode.setValue("words are fun");
+	this->otherArrayNode.setValue("linked node");
+
 }
 
 NodeController::~NodeController()

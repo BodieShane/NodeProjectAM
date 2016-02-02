@@ -23,6 +23,7 @@ class NodeController {
 
 private: Node<int>intNode;
 ArrayNode<string> stringArrayNode;
+ArrayNode<string> otherArrayNode;
 
 public:
 	NodeController();

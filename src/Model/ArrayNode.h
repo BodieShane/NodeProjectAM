@@ -19,9 +19,10 @@ private :
 public:
 	ArrayNode();
 	ArrayNode(Type value);
-	ArrayNode(Type value, ArrayNode * next);
+	ArrayNode(Type value, ArrayNode<Type> * next);
 	virtual ~ArrayNode();
-	ArrayNode * getNext();
+	ArrayNode<Type> * getNext();
+	void setNext(ArrayNode<Type> * next);
 };
 
 #endif /* MODEL_ARRAYNODE_H_ */
