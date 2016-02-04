@@ -20,6 +20,23 @@ CTECArray<Type>::CTECArray(int size)
 		return ;
 	}
 
+	for (int index = 0; index < size; index++)
+	{
+		if(head != nullptr)
+		{//We have more then one ArrayNode.
+			ArrayNode<Type> nextNode;
+			nextNode.setNext(head);
+			head = &nextNode;
+
+		}
+		else
+		{	//This is the first node in the array
+			ArrayNode<Type> temp;
+			head = &temp;
+
+		}
+	}
+
 }
 template <class Type>
 CTECArray<Type>::~CTECArray()
