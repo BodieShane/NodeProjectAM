@@ -6,12 +6,19 @@
  */
 
 #include "CTECArray.h"
-
+using namespace std;
 
 template <class Type>
 CTECArray<Type>::CTECArray(int size)
 {
-	// TODO Auto-generated constructor stub
+	this->size = size;
+	head = nullptr;
+
+	if (size <= 0)
+	{
+		cerr << "Impossible!" << endl;
+		return ;
+	}
 
 }
 template <class Type>
@@ -30,7 +37,7 @@ template <class Type>
 Type* CTECArray<Type>:: get(int position)
 {
 	// Bounds check for size and negtive
-	if(position < size || position < 0)
+	if(position >= size || position < 0)
 	{
 		return nullptr;
 	}
@@ -56,5 +63,23 @@ Type* CTECArray<Type>:: get(int position)
 template <class Type>
  void CTECArray<Type>:: set(int position,Type value)
 {
+	if(position >= size || position < 0)
+		{
+			cerr <<"dont't do this"<< endl;
+		}
+		else
+		{
+			for(int spot = 0; spot <= position; spot++)
+			{
 
+			ArrayNode<Type> * current = head;
+			if ( spot != position)
+						{
+							current = current -> getNext();
+						}
+						else
+						{
+							return current->getValue();
+			}		}
+		}
 }
