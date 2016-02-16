@@ -10,7 +10,7 @@
 
 #include<iostream>
 #include<string>
-
+#include"../Model/Timer.h"
 #include"../Model/Node.cpp"
 #include"../Model/ArrayNode.cpp"
 #include "../Model/CTECArray.cpp"
@@ -22,12 +22,8 @@ using namespace std;
 class NodeController {
 
 private:
-	//Node<int>intNode;
-//ArrayNode<string> stringArrayNode;
-//ArrayNode<string> otherArrayNode;
 	CTECArray<string> * myStringArray;
-
-
+	Timer arrayTimer;
 public:
 	NodeController();
 	virtual ~NodeController();
