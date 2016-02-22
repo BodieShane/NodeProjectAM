@@ -16,12 +16,14 @@ CTECArray<Type>::CTECArray(int size) {
 
 	assert(size > 0);
 	for (int index = 0; index < size; index++) {
-		if (head != nullptr) { //We have more then one ArrayNode.
-			ArrayNode<Type> * nextNode = new ArrayNode<Type>;
+		if (head != nullptr)
+		{ //We have more then one ArrayNode.
+			ArrayNode<Type> * nextNode = new ArrayNode<Type>();
 			nextNode->setNext(head);
 			head = nextNode;
 
-		} else {	//This is the first node in the array
+		}
+		else {	//This is the first node in the array
 			ArrayNode<Type> * first = new ArrayNode<Type>();
 			head = first;
 
@@ -52,11 +54,15 @@ Type CTECArray<Type>::get(int position) {
 	assert(position < size && position >= 0);
 
 	ArrayNode<Type> * current = head;
-	for (int spot = 0; spot <= position; spot++) {
+	for (int spot = 0; spot <= position; spot++)
+	{
 
-		if (spot != position) {
+		if (spot != position)
+		{
 			current = current->getNext();
-		} else {
+		}
+		else
+		{
 			return current -> getValue();
 		}
 	}
@@ -67,10 +73,10 @@ template<class Type>
 void CTECArray<Type>::set(int position, const Type& value) {
 
 	assert(position < size && position >= 0);
-
+	ArrayNode<Type> * current = head;
 	for (int spot = 0; spot <= position; spot++) {
 
-		ArrayNode<Type> * current = head;
+
 		if (spot != position) {
 			current = current->getNext();
 		} else {
