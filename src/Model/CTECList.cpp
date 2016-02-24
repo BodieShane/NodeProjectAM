@@ -6,7 +6,7 @@
  */
 
 #include "CTECList.h"
-#include <iostream>
+
 
 template<class Type>
 CTECList<Type>::CTECList() {
@@ -17,7 +17,7 @@ CTECList<Type>::CTECList() {
 
 template <class Type>
 CTECList<Type>::~CTECList() {
-	// TODO Auto-generated destructor stub
+
 }
 
 template <class Type>
@@ -57,12 +57,14 @@ template <class Type>
 Type CTECList<Type>::getFromIndex(int index)
 {
 
+
 }
 
 template <class Type>
 Type CTECList<Type>::removeFromFront()
 {
-	ArrayNode<Type> * newHead;
+	//create a pointer to what is after head
+	ArrayNode<Type> * newHead = new ArrayNode<Type>();
 	newHead = head->getNext();
 
 	delete head;
@@ -71,6 +73,9 @@ Type CTECList<Type>::removeFromFront()
 template <class Type>
 Type CTECList<Type>::removeFromEnd()
 {
+	// loop over size
+	//or
+	//loop until -> getNext() == nullptrv
 
 }
 
