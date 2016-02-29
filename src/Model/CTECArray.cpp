@@ -57,6 +57,8 @@ Type CTECArray<Type>::get(int position) {
 	for (int spot = 0; spot <= position; spot++)
 	{
 
+
+
 		if (spot != position)
 		{
 			current = current->getNext();
@@ -64,10 +66,22 @@ Type CTECArray<Type>::get(int position) {
 		else
 		{
 			return current -> getValue();
+
 		}
+
+
+
 	}
 
+
 }
+
+
+
+
+
+
+
 
 template<class Type>
 void CTECArray<Type>::set(int position, const Type& value) {

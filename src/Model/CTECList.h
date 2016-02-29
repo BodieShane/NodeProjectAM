@@ -25,6 +25,7 @@ public:
 	Type getFromIndex(int index);
 	Type removeFromFront();
 	Type removeFromEnd();
+	Type calculateSize();
 	Type removeFromIndex(int index);
 	Type set(int index, const Type& value);
 

@@ -18,6 +18,7 @@ private:
 	int size;
 	ArrayNode<Type> * head;
 
+void calculateSize();
 public:
 	CTECArray(int size);
 	virtual ~CTECArray();
