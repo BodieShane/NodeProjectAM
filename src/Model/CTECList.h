@@ -22,10 +22,10 @@ public:
 	void addAtIndex(int index, const Type& value);
 	Type getFront();
 	Type getEnd();
+
 	Type getFromIndex(int index);
 	Type removeFromFront();
 	Type removeFromEnd();
-	Type calculateSize();
 	Type removeFromIndex(int index);
 	Type set(int index, const Type& value);
 
@@ -33,6 +33,8 @@ private :
 	int size;
 	ArrayNode<Type> * head;
 	ArrayNode<Type> * end;
+
+	void calculateSize();
 };
 
 

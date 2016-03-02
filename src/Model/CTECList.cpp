@@ -21,43 +21,79 @@ CTECList<Type>::~CTECList() {
 
 }
 
+
+////////////////////get's the Size/////////////////////////////
 template <class Type>
 int CTECList<Type>::getSize()
 {
 
 }
+///////////////////////add's to the front/////////////////////
 template <class Type>
 void CTECList<Type>::addToFront(const Type& value)
 {
 
 }
+///////////////////////add's to end////////////////////////////
 template <class Type>
 void CTECList<Type>::addToEnd(const Type& value)
 {
 
 }
+//////////////////////add's at index////////////////////////////
 template <class Type>
 void CTECList<Type>::addAtIndex(int index, const Type& value)
 {
 
 }
-
+////////////////get's front////////////////////////////////////
 template <class Type>
 Type CTECList<Type>::getFront()
 {
+	Type ValueOfHead;
+	assert(this-> size > 0);
+	ArrayNode<Type> * newHead = new ArrayNode<Type>();
 
+	ValueOfHead  = this->head->getValue();
+	return ValueOfHead;
 }
+
+/////////////////////get's from end//////////////////////////////
 
 template <class Type>
 Type CTECList<Type>::getEnd()
 {
+ assert(this -> size > 0);
+ int count = 1;
+ ArrayNode<Type> * counterPointer = head;
 
+ if(counterPointer==nullptr)
+ 	{
+ 		this->size = 0;
+
+ 	}
+ 	else
+ 	{
+ 		count ++;
+ 		while ( counterPointer -> getNext() != nullptr)
+ 			{
+ 				counterPointer = counterPointer ->getNext();
+ 				count++;
+ 			}
+ 	this->size = count;
+ 	}
 }
 
+
+////////////////////remove's from the front/////////////////////
 
 template<class Type>
 Type CTECList<Type>:: removeFromFront()
 {
+
+
+
+
 	assert(this ->size > 0);
 	Type thingToRemove;
 	ArrayNode<Type> * newHead = new ArrayNode<Type>();
@@ -69,9 +105,9 @@ Type CTECList<Type>:: removeFromFront()
 }
 
 
-// calclates the size of the list
+///////////////// calclates the size of the list//////////////
 template<class Type>
-Type CTECList<Type>::calculateSize()
+void CTECList<Type>::calculateSize()
 {
 	assert(size >= 0);
 
@@ -80,7 +116,7 @@ Type CTECList<Type>::calculateSize()
 
 	if(counterPointer==nullptr)
 	{
-		this->size =0;
+		this->size = 0;
 		return;
 	}
 	else
@@ -91,29 +127,86 @@ Type CTECList<Type>::calculateSize()
 				counterPointer = counterPointer ->getNext();
 				count++;
 			}
-	this ->size=count;
+	this->size = count;
 	}
 
 }
+////////////// get's from the Index ////////////////////////
 template <class Type>
 Type CTECList<Type>::getFromIndex(int index)
 {
+assert(this->size>0);
 
+assert(index>= 0 && index < size);
 
+Type thingToRemove;
+ArrayNode<Type> * previous, deleteMe, newNext;
+if(index == 0)
+{
+	thingToRemove - removeFromFront();
+
+}
+else if (index == size -1)
+{
+	thingToRemove = removeFromEnd();
+}
+else
+{
+	for (int spot = 0; spot< index+ 1; spot ++)
+	{
+
+	}
+	size--;
+}
 }
 
 
 
-
+///////////////Removes from the end///////////////////////
 template <class Type>
 Type CTECList<Type>::removeFromEnd()
 {
-	// loop over size
+	assert(this->size>0);
+	//loop over size
 	//or
-	//loop until -> getNext() == nullptrv
+	//loop until getNext()->getNext() == nullptr
+	//grab the next to last node to point to nullptr
+	//set the next to last nhode as end
+	// delete the old last node
+	//Before return the variable call calculateSize().
+	// return value
+	Type valueToRemove;
+	if (size == 1)
+	{
+		valueToRemove=removeFromFront();
+		end = nullptr;
 
+		calculateSize();
+
+		return valueToRemove;
+	}
+
+
+	ArrayNode<Type> * current = head;
+	for(int spot =0; spot < size-1; spot ++)
+	{
+		current = current ->getNext();
+	}
+
+	ArrayNode<Type> * pointer = head;
+	while (pointer-> getNext()-> getNext !=nullptr)
+	{
+		pointer= pointer-> getNext();
+	}
+
+	valueToRemove = current-> getNext() ->getValue();
+	end = current;
+	delete current->getNext();
+
+	this->calculateSize();
+	return valueToRemove;
 }
-
+/////////////////Removes from the index//////////////////
 template <class Type>
 Type CTECList<Type>::removeFromIndex(int index)
 {
@@ -125,6 +218,7 @@ Type CTECList<Type>::removeFromIndex(int index)
 
 }
 
+////////////////////////set the index ///////////////////
 template <class Type>
 Type CTECList<Type>::set(int index, const Type& value)
 {
