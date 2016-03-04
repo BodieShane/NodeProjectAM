@@ -28,19 +28,26 @@ int CTECList<Type>::getSize()
 {
 
 }
-///////////////////////add's to the front/////////////////////
+///////////////////////add's to the front//////////////////////
 template <class Type>
 void CTECList<Type>::addToFront(const Type& value)
 {
+	ArrayNode<Type>* newNode = new ArrayNode<Type>(value);
+	newNode->setNext(this->head);
+	this->head->setNext(newNode);
+	calculateSize();
 
 }
 ///////////////////////add's to end////////////////////////////
 template <class Type>
 void CTECList<Type>::addToEnd(const Type& value)
 {
-
+	ArrayNode<Type>* newNode = new ArrayNode<Type>(value);
+	newNode-setNext(this->head);
+	this->head->setNext(newNode);
+	calculateSize();
 }
-//////////////////////add's at index////////////////////////////
+//////////////////////add's at index///////////////////////////
 template <class Type>
 void CTECList<Type>::addAtIndex(int index, const Type& value)
 {
@@ -58,7 +65,7 @@ Type CTECList<Type>::getFront()
 	return ValueOfHead;
 }
 
-/////////////////////get's from end//////////////////////////////
+/////////////////////get's from end////////////////////////////
 
 template <class Type>
 Type CTECList<Type>::getEnd()
@@ -105,7 +112,7 @@ Type CTECList<Type>:: removeFromFront()
 }
 
 
-///////////////// calclates the size of the list//////////////
+///////////////// calclates the size of the list////////////////
 template<class Type>
 void CTECList<Type>::calculateSize()
 {
@@ -131,13 +138,14 @@ void CTECList<Type>::calculateSize()
 	}
 
 }
-////////////// get's from the Index ////////////////////////
+
+////////////// get's from the Index ////////////////////////////
 template <class Type>
 Type CTECList<Type>::getFromIndex(int index)
 {
 assert(this->size>0);
 
-assert(index>= 0 && index < size);
+assert(index>= 0 && index <= size);
 
 Type thingToRemove;
 ArrayNode<Type> * previous, deleteMe, newNext;
@@ -162,7 +170,7 @@ else
 
 
 
-///////////////Removes from the end///////////////////////
+///////////////Removes from the end/////////////////////////////
 template <class Type>
 Type CTECList<Type>::removeFromEnd()
 {
