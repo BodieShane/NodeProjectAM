@@ -17,8 +17,23 @@ CTECList<Type>::CTECList() {
 }
 
 template <class Type>
-CTECList<Type>::~CTECList() {
+CTECList<Type>::~CTECList()
+{
+	ArrayNode<Type> *current = head;
 
+	for ( int deleteCount = 0; deleteCount < size; deleteCount++)
+	{
+		ArrayNode<Type>*temp = current;
+		current = current ->getNext();
+		head = current;
+		delete temp;
+	}
+
+
+	delete head;
+	head = nullptr;
+	end = nullptr;
+	size = 0;
 }
 
 
@@ -33,8 +48,7 @@ template <class Type>
 void CTECList<Type>::addToFront(const Type& value)
 {
 	ArrayNode<Type>* newNode = new ArrayNode<Type>(value);
-	newNode->setNext(this->head);
-	this->head->setNext(newNode);
+	head = newNode;
 	calculateSize();
 
 }
@@ -43,15 +57,43 @@ template <class Type>
 void CTECList<Type>::addToEnd(const Type& value)
 {
 	ArrayNode<Type>* newNode = new ArrayNode<Type>(value);
-	newNode-setNext(this->head);
-	this->head->setNext(newNode);
+
+	end->setNext(newNode);
+	end = newNode;
+
+
+
+
+
 	calculateSize();
 }
 //////////////////////add's at index///////////////////////////
 template <class Type>
 void CTECList<Type>::addAtIndex(int index, const Type& value)
 {
+	assert(index >= 0 && ! index > this -> size);
+	if (index == 0)
+	{
+		this ->addToFront(value);
+	}
+	else if(index == this->size)
+	{
+		this->addToEnd(value);
+	}
+	else
+	{
+		ArrayNode<Type> * newNode = new ArrayNode<Type>(value);
+		ArrayNode<Type> *  currentNode = this -> head;
+		for ( int spot =0; spot < index; spot ++)
+		{
+			currentNode = currentNode ->getNext();
+		}
+		newNode->setNext(currentNode->getNext());
+		currentNode->setNext(newNode);
+		this->calculateSize();
 
+
+	}
 }
 ////////////////get's front////////////////////////////////////
 template <class Type>
@@ -89,6 +131,7 @@ Type CTECList<Type>::getEnd()
  			}
  	this->size = count;
  	}
+    return 0;
 }
 
 
@@ -97,10 +140,6 @@ Type CTECList<Type>::getEnd()
 template<class Type>
 Type CTECList<Type>:: removeFromFront()
 {
-
-
-
-
 	assert(this ->size > 0);
 	Type thingToRemove;
 	ArrayNode<Type> * newHead = new ArrayNode<Type>();
@@ -168,7 +207,43 @@ else
 }
 }
 
+template < class Type>
+void CTECList<Type>:: selectionSort()
+{
+    for ( int outerLoop = 0; outerLoop < th-> size -1; outerLoop ++)
+    {
+        int selectiodMinimun = outerLoop ;
+        for(int innerLoop = outerLoop +1; innerLoop < size; innerLoop ++)
+        {
+            if (getFromIndex(innnerLoop) < getFromIndex(selectedMinimum))
+            {
+                selectedMinimum = innerLoop;
+            }
+        }
+        if(selectedMinimum != outerLoop)
+        {
+            wap(selectedMinimum,outerLoop);
+            
+        }
+    }
+    }
 
+
+template < class Type>
+void CTECList<Type> ::swap(int indexOne,int indexTwo)
+{
+    assert(indexOne< size&& indexTwo < size);
+    ArrayNode<Type> * first = getFromIndex(indexOne);
+    ArrayNode<Type> * second = getFromIndex (indexTwo);
+    ArrayNode<Type> * temp = new ArrayNode<Type>();
+    
+    temp ->setValue(first->getValue());
+    first->setValue(second->getValue());
+    second ->setValue(temp->getValue());
+    
+    delete temp;
+    
+}
 
 ///////////////Removes from the end/////////////////////////////
 template <class Type>

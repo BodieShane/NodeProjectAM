@@ -17,6 +17,7 @@ class CTECArray
 private:
 	int size;
 	ArrayNode<Type> * head;
+    void wwap (int indexOne, int indexTwo);
 
 void calculateSize();
 public:
@@ -25,6 +26,10 @@ public:
 	int getSize();
 	Type get(int position);
 	void set(int position,const Type& value);
+    int indexOf(Type value);
+    int nextIndexOf(int startingIndex, Type seachValue);
+    void selectionSort();
+    
 };
 
 #endif /* MODEL_CTECARRAY_H_ */

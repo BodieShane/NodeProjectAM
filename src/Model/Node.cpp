@@ -16,7 +16,8 @@ Node<Type>::Node() {
 }
 
 template <class Type>
-Node<Type>::~Node() {
+Node<Type>::~Node()
+{
 
 }
 

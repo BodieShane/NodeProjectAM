@@ -14,6 +14,7 @@ template<class Type>
 class CTECList {
 public:
 
+
 	CTECList();
 	~CTECList();
 	int getSize();
@@ -22,12 +23,15 @@ public:
 	void addAtIndex(int index, const Type& value);
 	Type getFront();
 	Type getEnd();
+    void swap(int indexOne, int indexTwo);
 
 	Type getFromIndex(int index);
 	Type removeFromFront();
 	Type removeFromEnd();
 	Type removeFromIndex(int index);
 	Type set(int index, const Type& value);
+    int indexOf(Type searchValue);
+    void selectionSort();
 
 private :
 	int size;
