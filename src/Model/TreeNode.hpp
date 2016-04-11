@@ -24,7 +24,7 @@ public:
     TreeNode();
     TreeNode(const Type & value);
     TreeNode (const Type & value, TreeNode<Type>*parent);
-    void setReftChild(TreeNode<Type> * rightChild);
+    void setRightChild(TreeNode<Type> * rightChild);
      void setLeftChild(TreeNode<Type> * leftChild);
      void setParent(TreeNode<Type> * parent);
     TreeNode<Type>* getLeftChild();
