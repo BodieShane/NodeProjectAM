@@ -24,6 +24,7 @@ public:
     CTECBinaryTree();
     ~CTECBinaryTree();
     
+
     bool insert(const Type& value);
     bool contains(Type value);
     Type remove(const Type& value);
