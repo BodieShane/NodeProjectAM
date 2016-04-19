@@ -14,6 +14,7 @@ bool CTECBinaryTree<Type> ::insert (const Type& value)
 {
     TreeNode<Type> * trailCurrent;
     TreeNode<Type> * newNode = new TreeNode<Type>(value);
+    assert(newNode!=nullptr);
     TreeNode<Type> * current = root;
     if (root== nullptr)
     {
@@ -46,14 +47,22 @@ bool CTECBinaryTree<Type> ::insert (const Type& value)
         {
             trailCurrent ->  setRightChiled(newNode) ;
         }
-        
+        trailCurrent -> setParent(trailCurrent);
 
-    }
+        }
     
+        return true;
 
    }
 template<class Type>
 Type CTECBinaryTree<Type>:: remove(const Type &value)
 {
-    
+    if (!contains(value))
+    {
+        return value;
+    }
+    else
+    {
+        
+    }
 }

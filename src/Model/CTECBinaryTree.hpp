@@ -28,6 +28,8 @@ public:
     bool insert(const Type& value);
     bool contains(Type value);
     Type remove(const Type& value);
+    Type Delete (const Type& value);
+
     int getHeght();
     bool isBalanced();
    TreeNode<Type> * getRoot();
