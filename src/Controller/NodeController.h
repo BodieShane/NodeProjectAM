@@ -22,7 +22,7 @@ using namespace std;
 class NodeController {
 
 private:
-	Timer arrayTimer;
+    void Timer; arrayTimer;
     void sortData();
     void testList();
     void searchTest();
