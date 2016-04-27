@@ -15,23 +15,23 @@ NodeController::NodeController() {
 	//this->stringArrayNode.setValue("words are fun");
 	//this->otherArrayNode.setValue("linked node");
 
-	myStringArray = new CTECArray<string>(5);
-	numbers = new CTECList<int>;
+//	myStringArray = new CTECArray<string>(5);
+//	numbers = new CTECList<int>;
 
 }
 
 void NodeController :: testList()
 {
-	numbers -> addToFront(3);
-	numbers->addToEnd(8);
-	cout << "End should be 8 and is:" << numbers ->getEnd() << endl;
+//	numbers -> addToFront(3);
+//	numbers->addToEnd(8);
+//	cout << "End should be 8 and is:" << numbers ->getEnd() << endl;
 }
 
 void NodeController :: doMergesort()
 {
     
     mergeData = new int [5000];
-    
+    Timer mergeTimer;
     for (int spot = 0; spot < 5000; spot ++)
     {
         int myRandom = rand();
@@ -41,10 +41,10 @@ void NodeController :: doMergesort()
     {
         cout << mergeData[spot] << ",";
     }
-    mrgeTimer.startTimer();
+    mergeTimer.startTimer();
     mergesort(mergeData,5000);
-    Timer mergeTime;
-    mrgeTimer.stopTimer();
+  
+    mergeTimer.stopTimer();
     mergesort(mergeData,5000);
     mergeTimer.displayTimerInformation();
     delete [] mergeData;
@@ -57,18 +57,18 @@ void NodeController:: quicksort(int data[], int size)
     
     if ( first < last)
     {
-        puvotIndex = partition(firstm last);
+        pivotIndex = partition(first < last);
         quicksort(first, pivotIndex-1);
         quicksort(pivotIndex+1, last)
-//        partition(data, size, pivotIndex);
-//        sizeONe = pivotIndex;
-//        sizeTow size-sizeOne -1;
-//        
-//        quicksort(data, sizeOne);
-//        quicksort((data + pivotIndex +1), sizeTwo );
+        partition(data, size, pivotIndex);
+      sizeOne = pivotIndex;
+    sizeTow size-sizeOne -1;
+
+        quicksort(data, sizeOne);
+        quicksort((data + pivotIndex +1), sizeTwo );
     }
 }
-void NodeController:: partitionint(nt first, int last)
+void NodeController:: partition (int first, int last)
 {
     int pivot;
     

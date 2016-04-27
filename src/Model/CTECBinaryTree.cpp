@@ -89,7 +89,7 @@ TreeNode<Type> * CTECBinaryTree<Type> :: getLeftMosetChile(CTECBinaryTree<Type> 
 }
 
 template<class Type>
-Type CTECBinaryTree<Type>:: remove(const Type &value)
+void CTECBinaryTree<Type>:: remove(const Type &value)
 {
     TreeNode<Type> * current =root;
     TreeNode<Type> * trailing = current;
@@ -181,7 +181,7 @@ void CTECBinaryTree<Type> :: remove(TreeNode<Type> * nodeToRemove)
     }
     else
     {
-        current = nodeToRemove-getLeftChild();
+        current = nodeToRemove->getLeftChild();
         trailing = nullptr;
         while(current -> getRightChild!= nullptr)
         {

@@ -210,19 +210,19 @@ else
 template < class Type>
 void CTECList<Type>:: selectionSort()
 {
-    for ( int outerLoop = 0; outerLoop < th-> size -1; outerLoop ++)
+    for ( int outerLoop = 0; outerLoop < this-> size -1; outerLoop ++)
     {
-        int selectiodMinimun = outerLoop ;
+        int selectedMinimun = outerLoop ;
         for(int innerLoop = outerLoop +1; innerLoop < size; innerLoop ++)
         {
-            if (getFromIndex(innnerLoop) < getFromIndex(selectedMinimum))
+            if (getFromIndex(innerLoop) < getFromIndex(selectedMinimun))
             {
-                selectedMinimum = innerLoop;
+                selectedMinimun = innerLoop;
             }
         }
-        if(selectedMinimum != outerLoop)
+        if(selectedMinimun != outerLoop)
         {
-            wap(selectedMinimum,outerLoop);
+            swap(selectedMinimun,outerLoop);
             
         }
     }

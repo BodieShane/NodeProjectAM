@@ -6,6 +6,7 @@
  */
 
 #include "CTECArray.h"
+
 #include <assert.h>
 using namespace std;
 
@@ -117,7 +118,7 @@ int CTECArray<Type> :: indexOf(Type sarchValue)
     return indexNotFound;
 }
 template < class Type>
-void CTECArray<Type> ::swap(int indexOne,int indexTwo)
+void CTECArray<Type> ::wwap(int indexOne,int indexTwo)
 {
     assert(indexOne< size&& indexTwo < size);
     ArrayNode<Type> * first = get(indexOne);
@@ -132,7 +133,7 @@ void CTECArray<Type> ::swap(int indexOne,int indexTwo)
     
 }
 template < class Type>
-void CTECArray::<Type>:: selectionSort()
+void CTECArray<Type> :: selectionSort()
 {
     int innerLoop, outerLoop;
     for (outerLoop = 0; outerLoop < this-> size()-1 ; outerLoop++)
@@ -140,13 +141,16 @@ void CTECArray::<Type>:: selectionSort()
         int selectedMinimum = outerLoop;
         for(innerLoop = outerLoop +1 ; innerLoop < size; innerLoop++)
         {
-            if (getFromIndex(innerLoop) <get(selectedMinimum))
+            if (get(innerLoop) <get(selectedMinimum))
             {
                 selectedMinimum = innerLoop;
             }
         }
-        if(selectedMinimum != outerLoop);
-        swap(outerLoop, selectedMinimum);
+        if(selectedMinimum != outerLoop)
+        {
+             swap(outerLoop, selectedMinimum);
+        }
+       
     }
 }
 

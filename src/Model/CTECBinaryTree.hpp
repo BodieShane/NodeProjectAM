@@ -10,6 +10,8 @@
 #define CTECBinaryTree_hpp
 
 #include "TreeNode.cpp"
+#include <iostream>
+
 
 template < class Type>
 class CTECBinaryTree
@@ -23,7 +25,7 @@ private:
     TreeNode<Type>getLeftMostChild(CTECBinaryTree<Type> rightSubTree);
     TreeNode<Type>* getRightMosetChile(CTECBinaryTree * leftSubTree);
      TreeNode<Type>* getLeftMosetChile(CTECBinaryTree * rightSubTree);
-    void reve(TreeNode<Type>* currentNode);
+    void remove(TreeNode<Type>* currentNode);
 public:
     CTECBinaryTree();
     ~CTECBinaryTree();
@@ -37,6 +39,8 @@ public:
 
     int getHeght();
     bool isBalanced();
+
+    
    TreeNode<Type> * getRoot();
     
 };
