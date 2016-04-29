@@ -7,13 +7,31 @@
 //
 
 #include "MorningGraph.hpp"
+using namespace std;
+
 
 using namespace CTECData;
 
 template<class Type>
 const int MorningGraph<Type> :: MAXIMUM;
 
+
+template<class Type>
+MorningGraph <Type>:: MorningGraph()
+{
+    this->Vertixes = 0;
+}
+
+template<class Type>
+MorningGraph<Type> :: ~MorningGraph()
+{
+    
+}
+
 template <class Type>
+int MorningGraph<Type> :: size() const{
+    return manyVertices;
+}
 
 void MorningGraph<Type>:: addEdge(int source,int target)
 {
@@ -52,7 +70,7 @@ bool MorningGraph<Type>:: isEdge(int source, int target) const
     return connected;
 }
 template <class Type>
-void MorningGraph<Type>::depthFirstTaversal(MorningGraph<Type> currentGraph,int vertex)
+void MorningGraph<Type>::depthFirstTraversal(MorningGraph<Type> currentGraph,int vertex)
 {
     bool markedVertices[MAXIMUM];
     assert(vertex < currentGraph.size());
@@ -63,11 +81,12 @@ void MorningGraph<Type>::depthFirstTaversal(MorningGraph<Type> currentGraph,int 
 template <class Type>
 void MorningGraph<Type>:: depthFirstTraversal(MorningGraph<Type> currentGraph,int vertex, bool * markdVertices)
 {
+    bool markedVertieces[MAXIMUM];
     std::set<int>connections = currentGraph.neighbos(vertex);
     std::set<int>::iterator setIterator;
     
     markdVertices[vertex] = true;
-    cout<< currentGraph[vertex] << endl;
+    cout << currentGraph[vertex] << endl;
     
     for(setIterator = connections.begin(); setIterator != connectionsend(); setIterator++)
     {
@@ -78,12 +97,37 @@ void MorningGraph<Type>:: depthFirstTraversal(MorningGraph<Type> currentGraph,in
     }
 }
 template<class Type>
-void MorningGraph<Type :: breadthFirstTraversal(MorningGraph<Type> currentGraph, int vertex)
+void MorningGraph<Type> :: breadthFirstTraversal(MorningGraph<Type> currentGraph, int vertex)
 {
     bool markedVertices[MAXIMUM];
+    std::set<int> connections;
+    std::set<int>:: iterator setIterator;
+    std::queue<int> vertexQueue;
+    assert(vertex < currentGraph.size());
+    
+    std::fill_n(markedVertices,currentGraph.size(), false);
+    markedVertices[vertex]= true;
+    cout<<currentGraph[vertex] << endl;
+    verteQueue.push(vertex);
+    while(!vertexQueue.empty())
+    {
+        connections = currentGraph.neighbors(vrtexQueue.front())
+        vertexqueu.pop();
+        for(setIteratior = connections.begin(); setIterator != connections.end(); setIterator++)
+        {
+            if(!markedVertices[*setIterator])
+            {
+                markedVertices[*setIterator] = true;
+                cout << currentGraph [* setIterator] << endl;
+                vertexQueue.push(*setIterator);
+            }
+        }
+    }
+    
+    
 }
 template<class Type>
-Type& MorningGraph <Type>:: operator[] (int vertex)
+Type & MorningGraph <Type>:: operator[] (int vertex)
 {
     assert(vertex < size());
     return lables[vertex];
@@ -115,4 +159,4 @@ void MorningGraph<Type> :: removeEdge(int source,int target)
 {
     assert(source <size() && target<size());
     edges[source][target] = false;
-}
+}}

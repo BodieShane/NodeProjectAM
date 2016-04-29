@@ -7,7 +7,7 @@
 
 #include "NodeController.h"
 
-
+using namespace std;
 
 
 NodeController::NodeController() {
@@ -59,7 +59,7 @@ void NodeController:: quicksort(int data[], int size)
     {
         pivotIndex = partition(first < last);
         quicksort(first, pivotIndex-1);
-        quicksort(pivotIndex+1, last)
+        quicksort(pivotIndex+1, last);
         partition(data, size, pivotIndex);
       sizeOne = pivotIndex;
     sizeTow size-sizeOne -1;
@@ -68,8 +68,7 @@ void NodeController:: quicksort(int data[], int size)
         quicksort((data + pivotIndex +1), sizeTwo );
     }
 }
-void NodeController:: partition (int first, int last)
-{
+void NodeController::partition (int data[], int size, int pivotIndex);{
     int pivot;
     
     int index, smallINdex;
@@ -89,6 +88,11 @@ void NodeController:: partition (int first, int last)
     swap(first,smallIndex);
     return smallIndex;
     
+}
+void NodeController::tryGraphs()
+{
+    testGraph-> addVertex(7));
+}
 }
 void NodeController:: swap(int first,int last)
 {
@@ -111,7 +115,18 @@ void NodeController::mergesort(int data[],int size)
         merge(data,sizeOne,sizeTwo);
     }
 }
-
+void NoidController:tryGraphs()
+{
+    CTECGRaph<int> testerGraph;
+    testerGraph.addVertex(7)
+    testerGraph.addVertex(18);
+    testerGraph.addEdge(0,1);
+     testerGraph.addEdge(1,0)
+    testerGraph.addEdge(9,9)
+    
+    testErGaph.breadthFirstTraversal(testerGraph,0);
+    
+}
 void NodeController:: doBodo()
 {
     int temp [10];

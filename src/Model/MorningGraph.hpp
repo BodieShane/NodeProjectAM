@@ -9,12 +9,14 @@
 #ifndef MorningGraph_hpp
 #define MorningGraph_hpp
 #include <set>
+using namespace std;
 
 #include <stdio.h>
 
 #endif /* MorningGraph_hpp */
 namespace CTECData
 {
+    
     template <class Type>
     class MorningGraph
     {
@@ -23,6 +25,7 @@ namespace CTECData
         bool edges [MAXIMUM][MAXIMUM]; // This is the adjacency matrix.
         Type lables[MAXIMUM];
         int manyVertices;
+        void depthFirstTraversal(MorningGraph<Type> graph, int vertex, bool* markdVertices);
     public:
         MorningGraph();
        virtual ~MorningGraph();

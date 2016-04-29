@@ -10,10 +10,10 @@
 
 #include <iostream>
 
-
+#include "../Model/MorningGraph.hpp"
 #include "../Model/CTECArray.cpp"
 #include "../Model/CTECList.cpp"
-#include "../Model/Timer.h"
+#include "../Model/Timer.cpp"
 
 using namespace std;
 
@@ -31,7 +31,8 @@ private:
 
     void setupRandomArray();
     void doBogo();
-   
+    void tryGraphs();
+    
     void swat(int first, int sexond);
     void quicksort(int data[], int size);
     void partition (int data[], int size, int pivotIndex);
