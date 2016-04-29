@@ -34,8 +34,8 @@ private:
     void tryGraphs();
     
     void swat(int first, int sexond);
-    void quicksort(int data[], int size);
-    void partition (int data[], int size, int pivotIndex);
+    void quicksort(int first, int last);
+    void partition (int First,int last);
     void doQuick();
     
     void doMergesort();
