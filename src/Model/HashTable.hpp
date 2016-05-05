@@ -17,7 +17,7 @@ namespace CTECData
     class MorningHashTable
     {
     private:
-        int capasity;
+        int capacity;
         double effciencyPercentage;
         int size;
         Type * internalStorage;
@@ -33,6 +33,7 @@ namespace CTECData
         void add (const Type& value);
         bool remove(const Type&value);
         bool contains (const Type&value);
+        int getSize();
         
         
         
