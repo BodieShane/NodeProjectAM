@@ -35,7 +35,7 @@ void NodeController :: doMergesort()
     int copped2 = 0;
     int index;
     
-    temp = new int [sizeOne + sizeTwo]
+    temp = new int [sizeof + sizeTwo];
     
     
    }
