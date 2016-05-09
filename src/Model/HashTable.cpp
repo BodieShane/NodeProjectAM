@@ -136,4 +136,25 @@ void MorningHashTable<Type> :: updateSize()
     internalStorage = updatedStorage;
 }
 
+template<class Type>
+bool MorningHashTable<Type:: contains(HashNodeAM<Type>   currentNode)
+{
+    bool isInTable = flase;
+
+    int idex = findPosition(currentNode);
+    while(internlStorage[index] != nullptr && !isInTable)
+    {
+        if(interanalStorage[index].getValue() ++ currentNode.getValue())
+        {
+            isInTable = true;
+        }
+        else
+        {
+            index = (index +1) %capacity;
+        }
+        
+        index = (index +1) % capacity;
+    }
+    retunr isInTale;
+}
 
