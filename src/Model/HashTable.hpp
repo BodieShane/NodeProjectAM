@@ -37,7 +37,7 @@ namespace CTECData
         ~MorningHashTable();
         
         void add (HashNodeAM<Type>   currentNode);
-        bool remove(HashNodeAM<Type>   currentNode);
+        bool remove(HashNodeAM<Type>currentNode);
         bool contains (HashNodeAM<Type>   currentNode);
         int getSize();
         

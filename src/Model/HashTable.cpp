@@ -137,9 +137,9 @@ void MorningHashTable<Type> :: updateSize()
 }
 
 template<class Type>
-bool MorningHashTable<Type:: contains(HashNodeAM<Type>   currentNode)
+bool MorningHashTable<Type>:: contains(HashNodeAM<Type>   currentNode)
 {
-    bool isInTable = flase;
+    bool isInTable = false;
 
     int idex = findPosition(currentNode);
     while(internlStorage[index] != nullptr && !isInTable)
@@ -155,6 +155,34 @@ bool MorningHashTable<Type:: contains(HashNodeAM<Type>   currentNode)
         
         index = (index +1) % capacity;
     }
-    retunr isInTale;
+    return isInTable;
 }
 
+template <class Type>
+bool MorningHashTable <Type> :: remove(HashNodeAM<Type>currentNode)
+{
+    boolwasRemoved = false;
+    
+    if (contains(currentNode))
+    {
+        int idex = findPosition(currentNode);
+        while(internlStorage[index] != nullptr && !wasRemoved)
+        {
+            if (internalStorage [index].getValue() == currentNode.getValue())
+            {
+                wasRemoved = true;
+                internalStorage [index] = nullptr;
+                size--;
+                
+            }
+            else
+            {
+                index = (index + 1) % capacity;
+            }
+        }
+        
+    }
+    
+    return wasRemoved;
+    
+}
