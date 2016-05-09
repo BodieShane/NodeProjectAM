@@ -7,6 +7,7 @@
 //
 
 #include "HashTable.hpp"
+
 using namespace CTECData;
 
 
@@ -16,7 +17,7 @@ MorningHashTable < Type > :: MorningHashTable()
     this-> capacity = 101;
     this ->efficiencyPercentage = .667;
     this-> size = 0;
-    this -> internalStorage = new Type [capacity];
+    this -> internalStorage = new  CTCData::HashNodeAM<Type> [capacity];
 }
 
 template <class Type>
@@ -32,18 +33,18 @@ int MorningHashTable<Type>:: getSize()
 }
 
 template <class Type>
-void MorningHashTable<Type>::add(const Type& value)
+void MorningHashTable<Type>::add(CTCData::HashNodeAM<Type>   currentNode)
 {
     
-    int  positionToInsert = findPosition(value);
+    int  positionToInsert = findPosition(currentNode);
     
-    if(!contains(value))
+    if(!contains(currentNode))
     {
         if(this->size/this->capacity >= this-> efficiencyPercentage)
         {
             updateSize();
         }
-        int positionToInsert = findPosition (value);
+        int positionToInsert = findPosition (currentNode);
     
         if(internalStorage[positionToInsert] != nullptr)
         {
@@ -55,21 +56,18 @@ void MorningHashTable<Type>::add(const Type& value)
             {
                 positionToInsert =(positionToInsert+ 1) % capacity;
             }
-            internalStorage[positionToInsert] = value;
         }
-        else
-        {
-            internalStorage[positionToInsert] = value;
-        }
+        internalStorage[positionToInsert] = currentNode;
+
     }
 }
 
 template <class Type>
 int MorningHashTable<Type> :: findPosition(CTCData::HashNodeAM<Type>   currentNode)
 {
-    int position;
+    int position = 0;
     
-    
+    position = currentNode.getKey() % capacity;
     
     return position;
 }

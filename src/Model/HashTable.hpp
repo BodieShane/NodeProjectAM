@@ -36,7 +36,7 @@ namespace CTECData
         
         void add (CTCData::HashNodeAM<Type>   currentNode);
         bool remove(CTCData::HashNodeAM<Type>   currentNode);
-        bool contains (CTCData::HashNodeAM<Type>   currentNode;);
+        bool contains (CTCData::HashNodeAM<Type>   currentNode);
         int getSize();
         
         
