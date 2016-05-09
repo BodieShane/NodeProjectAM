@@ -7,6 +7,7 @@
 //
 
 #include "HashTable.hpp"
+#include <cmath>
 
 using namespace CTECData;
 
@@ -73,6 +74,66 @@ int MorningHashTable<Type> :: findPosition(CTCData::HashNodeAM<Type>   currentNo
 }
 
 
+template <class Type>
+int MorningHashTable<Type> :: getNextPrime()
+{
+    int nextPrime = (capacity *2) +1;
+    while(!isPrime(nextPrime))
+    {
+        nextPrime++;
+    }return nextPrime;
+}
 
+template <class Type>
+bool MorningHashTable<Type> :: isPrime(int cadidateNumber)
+{
+    bool isPrime = true;
+    
+    if(cadidateNumber <= 1)
+    {
+        return false;
+    }
+    
+    else if (cadidateNumber == 2 || cadidateNumber ==3 )
+    {
+        isPrime = true;
+    }
+    else
+    {
+        for (int next = 3; next <= sqrt(cadidateNumber) +1; next += 2)
+        {
+            if(cadidateNumber % next == 0)
+            {
+                isPrime = false;
+                break;
+            }
+        }
+    }
+    
+    return isPrime;
+}
+
+template <class Type>
+void MorningHashTable<Type> :: updateSize()
+{
+    int updatedCapacity = getNextPrime();
+    HashNodeAM<Type> * updatedStorage =  new HashNodeAM<Type> [updatedCapacity];
+    int oldCapacity = capacity;
+    capacity = updatedCapacity;
+    
+    
+    for(int index = 0; index < oldCapacity; index ++)
+    {
+        if (internalStorage[index] != nullptr)
+        {
+            int updatedPosition = findPosition(internalStorage[index]);
+            updatedStorage[updatedPosition] = internalStorage[index];
+            
+            
+        }
+    }
+    
+    internalStorage = updatedStorage;
+}
 
 
