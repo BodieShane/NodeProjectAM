@@ -10,6 +10,8 @@
 #define HashTable_hpp
 
 #include <stdio.h>
+#include "CTECARRAY.cpp"
+#include "HashNodeAM.cpp"
 
 namespace CTECData
 {
@@ -21,18 +23,20 @@ namespace CTECData
         double effciencyPercentage;
         int size;
         Type * internalStorage;
+        CTCData::HashNodeAM<Type>* internalArray;
         
 
-        int findPosition(const Type value);
+        int findPosition( CTCData::HashNodeAM<Type>   currentNode);
         int handleCollision(const Type&value);
         void updateSize();
     
     public:
         MorningHashTable();
         ~MorningHashTable();
-        void add (const Type& value);
-        bool remove(const Type&value);
-        bool contains (const Type&value);
+        
+        void add (CTCData::HashNodeAM<Type>   currentNode);
+        bool remove(CTCData::HashNodeAM<Type>   currentNode);
+        bool contains (CTCData::HashNodeAM<Type>   currentNode;);
         int getSize();
         
         
