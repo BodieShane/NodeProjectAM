@@ -18,13 +18,36 @@ MorningHashTable < Type > :: MorningHashTable()
     this-> capacity = 101;
     this ->efficiencyPercentage = .667;
     this-> size = 0;
-    this -> internalStorage = new  CTCData::HashNodeAM<Type> [capacity];
+    this->tableStorage = new CTECList<HashNodeAM <Type>>[capacity];
+    this -> internalStorage = new  CTCData::HashNodeAM<HashNodeAM <Type>> [capacity];
 }
 
 template <class Type>
 MorningHashTable<Type> :: ~MorningHashTable<Type>()
 {
     delete [] internalStorage;
+    delete [] tableStorage;
+}
+
+template <class Type>
+void MorningHashTable<Type> :: addoTable(HashNodeAM<Type>currentNode)
+{
+    if(this->siz/this->capacity>=this-> efficiencyPercentage)
+    {
+        updateTableCapacit();
+    }
+    int positionToInsert = findPosition(currentNode);
+    //if the spot is empty,make a new liost and add the node
+    if(tableStorage[positionToInsert] == nullptr)
+    {
+        CTECList<HashNodeAM<Type>> hashList;
+        tableStorage[positionToInsert] + hashList;
+        hashList.addEnd(currentNode);
+    }
+    else//else add the node
+    {
+        tableStorage[positionToInsert].addEnd(currentNode);
+    }
 }
 
 template <class Type>
@@ -55,7 +78,8 @@ void MorningHashTable<Type>::add(CTCData::HashNodeAM<Type>   currentNode)
             
             while(internalStorage [ positionToInsert] != nullptr)
             {
-                positionToInsert =(positionToInsert+ 1) % capacity;
+                //positionToInsert =(positionToInsert+ 1) % capacity;
+                positionToInsert = handleCollision(currentNode);
             }
         }
         internalStorage[positionToInsert] = currentNode;
@@ -69,6 +93,15 @@ int MorningHashTable<Type> :: findPosition(CTCData::HashNodeAM<Type>   currentNo
     int position = 0;
     
     position = currentNode.getKey() % capacity;
+    
+    return position;
+}
+template <class Type>
+int MorningHashTable<Type> :: findTablePosition(CTCData::HashNodeAM<Type>   currentNode)
+{
+    int position = 0;
+    
+    position = currentNode.getKey() % tableCapacty;
     
     return position;
 }
@@ -113,6 +146,38 @@ bool MorningHashTable<Type> :: isPrime(int cadidateNumber)
     return isPrime;
 }
 
+template<class Type>
+void MorningHashTable<Type>:: updateTableCapacit()
+{
+    int updateCapacity = getNextPrime();
+    CTECList<HashNodeAM<Type>> * updatedTableStorage = new CTECList<HashNodeAM<Type>> [updateCapacity];
+    
+    int oldTableCapity = tableCapacty;
+    tableCapacty = updateCapacity;
+    for(int index = 0; index < oldTableCapity; index++ )
+    {
+        if(tableStorage [index] != nullptr)
+        {
+            CTECList<HashNodeAM<Type>> temp = tableStorage[index];
+            for ( int innerIndex = 0; innerIndex < tableStorage[index].getSize(); innerIndex++)
+            {
+                int updatedTablePosition = findPosition(temp.get(index));
+                if(updatedTableStorage[updatedTablePosition] == nullptr)
+                {
+                    CTECList<HashNodeAM<Type>> updatedList;
+                    updatedList.ddEnd(temp.get(index));
+                }
+                else
+                {
+                    updatedTableStorage[updatedTablePosition].addEnd(temp.getFromIndex(index));
+                }
+            }
+        }
+    }
+    
+}
+
+
 template <class Type>
 void MorningHashTable<Type> :: updateSize()
 {
@@ -141,19 +206,19 @@ bool MorningHashTable<Type>:: contains(HashNodeAM<Type>   currentNode)
 {
     bool isInTable = false;
 
-    int idex = findPosition(currentNode);
-    while(internlStorage[index] != nullptr && !isInTable)
+    int index = findPosition(currentNode);
+    while(internalStorage[index] != nullptr && !isInTable)
     {
-        if(interanalStorage[index].getValue() ++ currentNode.getValue())
+        if(internalStorage[index].getValue() + currentNode.getValue())
         {
             isInTable = true;
         }
         else
         {
-            index = (index +1) %capacity;
+            index = (index + 1) %capacity;
         }
         
-        index = (index +1) % capacity;
+        index = (index + 1) % capacity;
     }
     return isInTable;
 }
@@ -161,12 +226,12 @@ bool MorningHashTable<Type>:: contains(HashNodeAM<Type>   currentNode)
 template <class Type>
 bool MorningHashTable <Type> :: remove(HashNodeAM<Type>currentNode)
 {
-    boolwasRemoved = false;
+    bool wasRemoved = false;
     
     if (contains(currentNode))
     {
-        int idex = findPosition(currentNode);
-        while(internlStorage[index] != nullptr && !wasRemoved)
+        int index = findPosition(currentNode);
+        while(internalStorage[index] != nullptr && !wasRemoved)
         {
             if (internalStorage [index].getValue() == currentNode.getValue())
             {
@@ -185,4 +250,13 @@ bool MorningHashTable <Type> :: remove(HashNodeAM<Type>currentNode)
     
     return wasRemoved;
     
+}
+template<class Type>
+int MorningHashTable<Type> :: handleCollision(HashNodeAM<Type>currentNode)
+{
+    int reHashedPosition =  findPosition(currentNode);
+    int random = rand();
+    reHashedPosition = (random + (reHashedPosition * reHashedPosition)) % capacity;
+    
+    return reHashedPosition;
 }
