@@ -18,8 +18,8 @@ MorningHashTable < Type > :: MorningHashTable()
     this-> capacity = 101;
     this ->efficiencyPercentage = .667;
     this-> size = 0;
-    this->tableStorage = new CTECList<HashNodeAM <Type>>[capacity];
-    this -> internalStorage = new  CTCData::HashNodeAM<HashNodeAM <Type>> [capacity];
+    this->tableStorage = new CTECList<HashNodeAM <Type>*>[capacity];
+    this -> internalStorage = new  CTCData::HashNodeAM <Type>* [capacity];
 }
 
 template <class Type>
@@ -82,7 +82,8 @@ void MorningHashTable<Type>::add(CTCData::HashNodeAM<Type>   currentNode)
                 positionToInsert = handleCollision(currentNode);
             }
         }
-        internalStorage[positionToInsert] = currentNode;
+        internalStorage[positionToInsert] = &currentNode;
+        size++;
 
     }
 }
@@ -182,7 +183,7 @@ template <class Type>
 void MorningHashTable<Type> :: updateSize()
 {
     int updatedCapacity = getNextPrime();
-    HashNodeAM<Type> * updatedStorage =  new HashNodeAM<Type> [updatedCapacity];
+    HashNodeAM<Type> ** updatedStorage =  new HashNodeAM<Type>* [updatedCapacity];
     int oldCapacity = capacity;
     capacity = updatedCapacity;
     
@@ -191,7 +192,7 @@ void MorningHashTable<Type> :: updateSize()
     {
         if (internalStorage[index] != nullptr)
         {
-            int updatedPosition = findPosition(internalStorage[index]);
+            int updatedPosition = findPosition(*internalStorage[index]);
             updatedStorage[updatedPosition] = internalStorage[index];
             
             
@@ -209,7 +210,7 @@ bool MorningHashTable<Type>:: contains(HashNodeAM<Type>   currentNode)
     int index = findPosition(currentNode);
     while(internalStorage[index] != nullptr && !isInTable)
     {
-        if(internalStorage[index].getValue() + currentNode.getValue())
+        if(internalStorage[index]->getValue() + currentNode.getValue())
         {
             isInTable = true;
         }

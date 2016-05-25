@@ -13,8 +13,13 @@ template <class Type>
 
  HashNodeAM<Type> :: HashNodeAM (int key,  const Type& value)
 {
-    return this->key;
+    //return this->key;
     this->value = value;
+}
+template <class Type>
+HashNodeAM<Type> :: HashNodeAM ()
+{
+   
 }
 template <class Type>
 
@@ -36,7 +41,7 @@ int HashNodeAM<Type>:: getKey()
     return this -> key;
 }
 template <class Type>
-Type HashNodeAM <Type> :: getValue()
+Type HashNodeAM<Type>:: getValue()
 {
     return this -> value;
 }

@@ -15,15 +15,16 @@ namespace CTCData
     template <class Type>
     class HashNodeAM
     {
-    public:
+    private:
         int key;
         Type value;
-    private:
+    public:
+        HashNodeAM();
         HashNodeAM(int key, const Type& value);
-        void setKey(int key);
+        int setKey(int key);
         void setValue(const Type& value);
         int getKey();
-        Type getValue;
+        Type getValue();
     };
     
 }

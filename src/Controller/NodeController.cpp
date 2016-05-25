@@ -8,6 +8,7 @@
 #include "NodeController.h"
 
 using namespace std;
+using namespace  CTCData;
 
 
 NodeController::NodeController() {
@@ -15,10 +16,15 @@ NodeController::NodeController() {
 	//this->stringArrayNode.setValue("words are fun");
 	//this->otherArrayNode.setValue("linked node");
 
-//	myStringArray = new CTECArray<string>(5);
+	myStringArray = new CTECArray<string>(5);
 //	numbers = new CTECList<int>;
 
 }
+NodeController::~NodeController()
+{
+}
+
+
 
 void NodeController :: testList()
 {
@@ -29,64 +35,102 @@ void NodeController :: testList()
 
 void NodeController :: doMergesort()
 {
-    int * temp;
-    int copied = 0;
-    int copied1= 0 ;
-    int copped2 = 0;
-    int index;
+    mergeData = new int[5000];
     
-    temp = new int [sizeof + sizeTwo];
+    for(int spot = 0; spot < 5000; spot++)
+    {
+        int myRandom = rand();
+        mergeData[spot] = myRandom;
+    }
     
+    for(int spot = 0; spot < 50; spot++)
+    {
+        cout << mergeData[spot] << ", " ;
+    }
+    
+    Timer mergeTimer;
+    mergeTimer.startTimer();
+    mergeSort(mergeData, 5000);
+    mergeTimer.stopTimer();
+    mergeTimer.displayTimerInformation();
+    
+    for(int spot = 0; spot < 50; spot++)
+    {
+        cout << mergeData[spot] << ", " ;
+    }
+    
+    delete [] mergeData;
     
    }
-void NodeController:: quicksort(int first, int last)
+void NodeController:: quickSort(int first, int last)
 {
     int pivotIndex;
-    int sizeOne;
-   
-    if ( first < last)
+    
+    if(first < last)
     {
         pivotIndex = partition(first, last);
-        quicksort(first,pivotIndex-1);
-        quicksort(pivotIndex + 1, last);
-        
+        quickSort(first, pivotIndex-1);
+        quickSort(pivotIndex+1, last);
         
     }
 }
-void NodeController::partition (int First,int last)
+int NodeController:: partition(int first, int last)
 {
     int pivot;
     
-    int index, smallINdex;
-    swap(First, (First = last)/2);
+    int index, smallIndex;
+    swap(first, (first + last)/2);
     
-    pivot = mergeData[First];
-    smallINdex = First;
+    pivot = mergeData[first];
+    smallIndex = first;
     
-    for (index = First = 1; index <= last; index++)
+    for(index = first + 1; index <= last; index++)
     {
-        if (mergeData) [index]<pivot>)
+        if(mergeData[index] < pivot)
         {
             smallIndex++;
             swap(smallIndex, index);
         }
+        
     }
-    swap(First,smallINdex);
-    return smallINdex;
+    swap(first, smallIndex);
+    
+    return smallIndex;
     
 }
-void NodeController::tryGraphs()
+
+void NodeController :: testHashTable()
 {
-    testGraph-> addVertex(7));
+    MorningHashTable<int> tempTable;
+    HashNodeAM<int>tempArray[10];
+    for(int spot = 0; spot < 10;spot ++)
+        {
+            int randomValue = rand();
+            int randomKey = rand();
+            HashNodeAM<int> temp= HashNodeAM<int>(randomKey,randomValue);
+            tempTable.add(temp);
+            tempArray[spot] = temp;
+        }
+    bool test = tempTable.contains(tempArray[0]);
+        string result;
+        if(test)
+        {
+            result = "it's there";
+        }
+        else
+        {
+            result = "not anywhere";
+        }
+        
 }
-}
+
 void NodeController:: swap(int first,int last)
 {
     int temp = mergeData[first];
     mergeData[first] = mergeData[last];
     mergeData[last] = temp;
 }
-void NodeController::mergesort(int data[],int size)
+void NodeController::mergeSort(int data[],int size)
 {
     int sizeOne;
     int sizeTwo;
@@ -96,61 +140,54 @@ void NodeController::mergesort(int data[],int size)
         sizeOne = size/2;
         sizeTwo = size-sizeOne;
         
-        mergesort(data, sizeOne);
-        mergesort(ata+sizeOne, sizeTwo);
+        mergeSort(data, sizeOne);
+        mergeSort(data+sizeOne, sizeTwo);
         merge(data,sizeOne,sizeTwo);
     }
 }
-void NoidController:tryGraphs()
+void NodeController::TryGraphs()
 {
-    CTECGRaph<int> testerGraph;
-    testerGraph.addVertex(7)
+    MorningGraph<int> testerGraph;
+    testerGraph.addVertex(7);
     testerGraph.addVertex(18);
     testerGraph.addEdge(0,1);
-     testerGraph.addEdge(1,0)
-    testerGraph.addEdge(9,9)
+     testerGraph.addEdge(1,0);
+    testerGraph.addEdge(9,9);
     
-    testErGaph.breadthFirstTraversal(testerGraph,0);
+    testerGraph.breadthFirstTraversal(testerGraph,0);
     
 }
-void NodeController:: doBodo()
-{
-    int temp [10];
-    int check[10];
-    
-    for (int int = 0; index < 10; index)
-    {
-        check[intdex] = index;
-    }
-}
+
 void NodeController::merge(int data[],int sizeOne, int sizeTow)
 {
     int *temp;//lint for a temparray
     int copied = 0;
+    int copied1 = 0;
     int copied2 =0;
     int index;
     
-    temp = new int[sizeOne+sizeTwo];
-    while(( copied1 < sizeOne ) && ( copied2 < size Two))
+    temp = new int[sizeOne+sizeTow];
+    while(( copied1 < sizeOne ) && ( copied2 < sizeTow))
     {
         if (data [ copied1] < (data + sizeOne) [ copied2])
         {
-            temp [ copie++] = daty[ copied 1++];
+            temp [ copied++] = data[ copied1++];
         }
         else
         {
             temp [ copied ++] = (data +sizeOne) [ copied2++];
         }
     }
-    while ( copied1 < sizeOne)]
+    while ( copied1 < sizeOne)
     {
-        temp[copied++] data[ copied 1++];
+        temp[copied++];
+        data[ copied1++];
     }
-    while ( copied 2 < sizeTwo)
+    while ( copied2 < sizeTow)
     {
-        temp[copied++]= ( data = sizeONe) [ copied2];
+        temp[copied++]= ( data = &sizeOne) [ copied2];
     }
-    for(index=0; index < sizeOne = sizeTowl index++)
+    for(index=0; index < sizeOne == sizeTow; index++)
     { data[index] = temp [ index];
     }
     delete[]temp;
@@ -196,27 +233,27 @@ void NodeController :: start()
 	}
     
     
-    void NodeController:: checksSorts()
-    {
-        CTECArray<int> numbersInArray(5000);
-        CTECList<int> numbersInList;
-        for(int spot = 0; spot < 5000; spot++)
-        {
-            int randomValue = rand();
-            numberInList.set(spot, randValue);
-            numbersInList.addToEnd(randomValue);
-        }
-        Timer sortTimmer;
-        listTimer.startTimer();
-        numberInList.selectionSort();
-        sortTimer.stopTimer();
-        sortTimer.displayTimerInformation();
-        
-        sortTimer.resetTimer();
-        sortTimmer.startTimmer();
-        std::sort(
-    }
-                  
+//    void NodeController:: checksSorts()
+//    {
+//        CTECArray<int> numbersInArray(5000);
+//        CTECList<int> numbersInList;
+//        for(int spot = 0; spot < 5000; spot++)
+//        {
+//            int randomValue = rand();
+//            numberInList.set(spot, randValue);
+//            numbersInList.addToEnd(randomValue);
+//        }
+//        Timer sortTimmer;
+//        listTimer.startTimer();
+//        numberInList.selectionSort();
+//        sortTimer.stopTimer();
+//        sortTimer.displayTimerInformation();
+//        
+//        sortTimer.resetTimer();
+//        sortTimmer.startTimmer();
+//        std::sort(
+//    }
+//                  
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
     

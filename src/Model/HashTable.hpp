@@ -10,9 +10,9 @@
 #define HashTable_hpp
 
 #include <stdio.h>
-#include "CTECARRAY.cpp"
+#include "CTECArray.h"
 #include "HashNodeAM.cpp"
-#include "CTECList.cpp"
+#include "CTECList.h"
 
 namespace CTECData
 {
@@ -22,12 +22,11 @@ namespace CTECData
     private:
         int capacity;
         int tableCapacty;
-        double effciencyPercentage;
+        double efficiencyPercentage;
         int tableSize;
         int size;
-        Type * internalStorage;
-        CTCData::HashNodeAM<Type>* internalArray;
-        CTECList <HashNodeAM <Type>>tableStorage;
+        HashNodeAM<Type> ** internalStorage;
+        CTECList <HashNodeAM <Type>*> * tableStorage;
         
 
         int findPosition( CTCData::HashNodeAM<Type>   currentNode);

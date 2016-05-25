@@ -10,43 +10,51 @@
 
 #include <iostream>
 
-#include "../Model/MorningGraph.hpp"
+#include "../Model/Node.cpp"
+#include "../Model/ArrayNode.cpp"
 #include "../Model/CTECArray.cpp"
 #include "../Model/CTECList.cpp"
-#include "../Model/Timer.cpp"
+#include "../Model/Timer.h"
+#include "../Model/MorningGraph.cpp"
+#include "../Model/HashTable.cpp"
 
 using namespace std;
 
 
 
 class NodeController {
+    
+public:
+    NodeController();
+    virtual ~NodeController();
+    void start();
+    
+
 
 private:
+    CTECArray<int>* notHipsterInts;
+    CTECArray<string>* myStringArray;
+    CTECList<int>* sortable;
+    CTECList<string>* coolStrings;
     Timer arrayTimer;
+    
+    
     void sortData();
     void testList();
     void searchTest();
+    void TryGraphs();
     
-    int *mergeData;
-
-    void setupRandomArray();
-    void doBogo();
-    void tryGraphs();
-    
-    void swat(int first, int sexond);
-    void quicksort(int first, int last);
-    void partition (int First,int last);
-    void doQuick();
-    
+    int * mergeData;
     void doMergesort();
-   
-    void mergesort(int dataArr [], int size);
-    void merge(int data [], int sizeOne,int sizeTwo);
-	
-	public:
-	NodeController();
-	virtual ~NodeController();
-	void start();
+    void mergeSort(int data [], int size);
+    void merge(int data [], int sizeOne, int sizeTwo);
+    void doQuickSort();
+    void quickSort(int first, int last);
+    int partition(int first, int last);
+    void swap(int first, int last);
+    void print();
+    
+    void testHashTable();
 };
 
 #endif /* NODECONTROLLER_H_ */
